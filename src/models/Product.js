@@ -8,6 +8,7 @@ const ProductSchema    =   new Schema ({
 		required: true,
 		trim: true,
 	},
+	
 	price: {
 		type: Number,
 		required: true,
@@ -23,12 +24,10 @@ const ProductSchema    =   new Schema ({
 	category: {
 		type: Schema.Types.ObjectId,
 		ref: 'Category',
-		required: true,
 	},
 	store: {
 		type: Schema.Types.ObjectId,
 		ref: 'Store',
-		required: true,
 	},
 	
 }, {timestamp: true});

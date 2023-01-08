@@ -22,7 +22,7 @@ var validateFile = function (file, cb) {
 
 const uploader = multer({
 	storage: storage,
-	limits: { fileSize: 800000 },
+	limits: { fileSize: 8000000000 },
 	fileFilter: function (req, file, callback) {
 		validateFile(file, callback);
 	},

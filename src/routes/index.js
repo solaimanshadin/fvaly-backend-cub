@@ -7,5 +7,6 @@ router.use('/category', require('./category'));
 router.use('/order', require('./order'));
 router.use('/dashboard', require('./dashboard'));
 router.use('/merchant', require('./merchant'));
+router.use('/user', require('./user'));
 
 module.exports = router;

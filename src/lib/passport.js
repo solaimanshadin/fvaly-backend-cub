@@ -19,7 +19,7 @@ module.exports = (passport) => {
 					return done(err, false);
 				}
 				if (user) {
-					if (user.status === 'verified' || user.status === 'pending' ) {
+					if (user.status === 'verified' || user.status === 'pending' ||  user.status === 'approved') {
 						return done(null, user);
 					} else {
 						return done(null, false, {

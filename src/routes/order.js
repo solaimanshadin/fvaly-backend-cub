@@ -11,17 +11,31 @@ router.post('/',
 
 router.delete('/:id',
 	passport.authenticate('jwt', { session: false }),
-	accessControl.grantAccess('deleteOwn', 'order'), orderController.deleteOrder
+	accessControl.grantAccess('deleteAny', 'order'),
+	orderController.deleteOrder
 );
 
 router.get(
 	'/:id',
+	passport.authenticate('jwt', { session: false }),
+	accessControl.grantAccess('readAny', 'order'),
 	orderController.getOrderById
 );
 
 router.get(
 	'/',
+	passport.authenticate('jwt', { session: false }),
+	accessControl.grantAccess('readAny', 'order'),
 	orderController.getOrders
 );
+
+router.patch(
+	'/:id',
+	passport.authenticate('jwt', { session: false }),
+	accessControl.grantAccess('updateAny', 'order'),
+	orderController.updateOrder,
+
+);
+
 
 module.exports = router;

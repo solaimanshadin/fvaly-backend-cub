@@ -13,6 +13,7 @@ module.exports.createProduct = async (req, res, next) => {
 		await product.save();
 		return res.status(201).json(createResponse(product, 'Product Added successfully!', false));
 	} catch(err) {
+		console.log(err);
 		next(err);
 	}
 };
@@ -48,7 +49,7 @@ module.exports.getProductById = async (req, res, next) => {
 module.exports.getProducts = async (req, res, next) => {
 	try{
 		const query = req.query;
-		const products = await Product.find(query);
+		const products = await Product.find(query).sort({_id: -1});
 		return res.json(createResponse(products));
 	} catch(err){
 		next(err);
@@ -56,3 +57,21 @@ module.exports.getProducts = async (req, res, next) => {
 };
 
 
+
+module.exports.updateProduct = async (req, res, next) => {
+	try{
+		const { id } = req.params;
+		const body = req.body;
+		if(req.file) {
+			const upload = await cloudinary.uploader.upload(req.file.path);
+			body.image = upload.public_id;
+		}else {
+			delete body.image;
+		}
+		
+		const product = await Product.updateOne({_id: id}, body);
+		return res.status(200).json(createResponse(product, 'Product Updated successfully!', false));
+	} catch(err){
+		next(err);
+	}
+};

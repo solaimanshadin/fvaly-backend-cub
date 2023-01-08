@@ -4,7 +4,6 @@ const ac = new AccessControl();
 exports.roles = (function () {
 	ac.grant('user').readOwn('profile').updateOwn('profile').createOwn('order');
 	ac.grant('merchant').extend('user').readAny('profile');
-	ac.grant('admin').readAny('profile').updateAny('profile');
 
 	ac.grant('merchant')
 		.extend('user')
@@ -18,6 +17,10 @@ exports.roles = (function () {
 
 	ac.grant('admin')
 		.extend('user')
+		.updateAny('profile')
+		.createAny('profile')
+		.deleteAny('profile')
+		.readAny('profile')
 		.extend('merchant')
 		.createAny('category')
 		.readAny('product')
