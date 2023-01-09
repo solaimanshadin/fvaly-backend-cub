@@ -30,7 +30,8 @@ exports.roles = (function () {
 		.readAny('user')
 		.updateAny('user')
 		.deleteAny('order')
-		.readAny('order');
+		.readAny('order')
+		.updateAny('order');
 
 	return ac;
 })();
